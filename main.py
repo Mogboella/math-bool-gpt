@@ -1,9 +1,9 @@
 import os
 import sys
 import torch
-from model import GPTLanguageModel, TrainConfig
-from evaluate import evaluate_math_correct, evaluate_bool_correct
-from utils import (
+from code.model import GPTLanguageModel, TrainConfig
+from code.evaluate import evaluate_math_correct, evaluate_bool_correct
+from code.utils import (
     get_device,
     build_stoi_itos,
     make_encode_decode,
@@ -24,7 +24,7 @@ def run_part1_demo():
     print("PART 1: MATH GPT DEMONSTRATION")
 
     # Setup vocabulary
-    math_chars = list("0123456789+-*/()= \n")
+    math_chars = list("0123456789+-*/()= \n\t")
     m_stoi, m_itos = build_stoi_itos(math_chars)
     m_enc, m_dec = make_encode_decode(m_stoi, m_itos)
     vocab_size = len(math_chars)
@@ -36,10 +36,12 @@ def run_part1_demo():
         print("Please run train_part1.py first!")
         return
 
-    # Use medium config (adjust based on your best model)
-    cfg = TrainConfig(n_embd=128, n_head=4, n_layer=4, block_size=64)
+    cfg = TrainConfig(n_embd=128, n_head=4, n_layer=4, block_size=64)  # TODO
     model = GPTLanguageModel(cfg, vocab_size, device)
-    model.load_state_dict(torch.load(model_path, map_location=device))
+
+    state_dict = torch.load(model_path, map_location=device, weights_only=True)
+    model.load_state_dict(state_dict)
+    model.to(device)
     model.eval()
 
     print(f"Model loaded from: {model_path}")
@@ -95,10 +97,12 @@ def run_part2_demo():
         print("Please run train_part2.py first!")
         return
 
-    # Use medium config (adjust based on your best model)
-    cfg = TrainConfig(n_embd=128, n_head=4, n_layer=4, block_size=64)
+    cfg = TrainConfig(n_embd=128, n_head=4, n_layer=4, block_size=128)  # TODO
     model = GPTLanguageModel(cfg, vocab_size, device)
-    model.load_state_dict(torch.load(model_path, map_location=device))
+
+    state_dict = torch.load(model_path, map_location=device, weights_only=True)
+    model.load_state_dict(state_dict)
+    model.to(device)
     model.eval()
 
     print(f"Model loaded from: {model_path}")

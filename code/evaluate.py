@@ -90,12 +90,6 @@ def evaluate_bool_correct(
 
         pred = full[len(prompt) :].split("\n")[0].strip()
 
-        pred = pred.strip()
-        if pred == "T":
-            pred = "True"
-        if pred == "F":
-            pred = "False"
-
         if pred == rhs.strip():
             correct += 1
 

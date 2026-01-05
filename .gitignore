@@ -71,6 +71,7 @@ logs/
 results/
 outputs/
 runs/
+plots/
 
 # Environment variables
 .env
