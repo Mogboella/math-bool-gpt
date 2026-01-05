@@ -17,5 +17,5 @@ python3 code/train_part2.py
 
 ### 4. Run demonstrations
 ```bash
-python3 run.py
+python3 main.py
 ```

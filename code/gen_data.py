@@ -148,7 +148,7 @@ def generate_bool_dataset(num_samples, max_depth, filename):
 
             if expr not in samples:
                 val = evaluate_expression(expr)
-                result = "True" if val else "False"
+                result = "T" if val else "F"
                 samples.add(f"{expr}={result}")
 
         f.write("\n".join(samples))
