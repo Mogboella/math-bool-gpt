@@ -515,9 +515,22 @@ if __name__ == "__main__":
     print(f"\nBest model ({best_result['name']}) saved as: {final_model_path}")
 
     # Load best model for detailed evaluation
-    best_cfg = CFG_MEDIUM
+    # Map model name to its config
+    config_map = {
+        "bool_baseline_small": CFG_SMALL,
+        "bool_baseline_medium": CFG_MEDIUM,
+        "bool_longctx": CFG_LONGCTX,
+    }
+
+    best_cfg = config_map.get(best_result["name"], CFG_MEDIUM)
+    print(
+        f"Loading model with config: {best_result['name']} (block_size={best_cfg.block_size})"
+    )
+
     best_model = GPTLanguageModel(best_cfg, vocab_size, device).to(device)
-    best_model.load_state_dict(torch.load(final_model_path))
+    best_model.load_state_dict(
+        torch.load(final_model_path, map_location=device, weights_only=True)
+    )
 
     # Evaluate by depth
     depth_results = evaluate_by_depth(best_model, best_cfg)
