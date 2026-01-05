@@ -433,7 +433,7 @@ def run_architectural_experiments_bool():
     for r in dropout_results:
         overfit = r["val_loss"] - r["train_loss"]
         print(
-            f"{r['name']:<10.1f} {r['train_loss']:<12.4f} "
+            f"{r['name']:<12f} {r['train_loss']:<12.4f} "
             f"{r['val_loss']:<12.4f} {overfit:<12.4f} {r['test_acc@1000']:<10.2f}"
         )
 

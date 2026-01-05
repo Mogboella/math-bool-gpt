@@ -1,8 +1,15 @@
 #!/bin/bash
 
-set -e  # Exit on error
+set -e  
 
 echo "=== Starting ML Training Pipeline ==="
+echo ""
+
+echo "Step 0: Setting up environment..."
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+echo "✓ Environment setup complete"
 echo ""
 
 echo "Step 1: Generating datasets..."

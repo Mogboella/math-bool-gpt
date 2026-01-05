@@ -100,7 +100,7 @@ if __name__ == "__main__":
         "Baseline Med\n(0.80M)",
         "Long Context\n(0.81M)",
     ]
-    bool_accs = [48.7, 46.3, 51.1]
+    bool_accs = [48.7, 46.3, 51.5]
 
     # Learning curves for Boolean runs
     bool_loss_data = {

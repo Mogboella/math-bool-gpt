@@ -1,8 +1,8 @@
 import os
 import time
 import torch
-from model import GPTLanguageModel, TrainConfig
-from utils import (
+from .model import GPTLanguageModel, TrainConfig
+from .utils import (
     set_seed,
     get_device,
     build_stoi_itos,
@@ -14,7 +14,7 @@ from utils import (
     sample_generations,
     show_prompt_result,
 )
-from evaluate import evaluate_math_correct
+from .evaluate import evaluate_math_correct
 
 set_seed(1337)
 device = get_device()
@@ -405,7 +405,7 @@ def run_architectural_experiments():
     for r in dropout_results:
         overfit = r["val_loss"] - r["train_loss"]
         print(
-            f"{r['name']:<10.1f} {r['train_loss']:<12.4f} "
+            f"{r['name']:<12f} {r['train_loss']:<12.4f} "
             f"{r['val_loss']:<12.4f} {overfit:<12.4f} {r['test_acc@1000']:<10.2f}"
         )
 

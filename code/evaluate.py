@@ -1,6 +1,6 @@
 import torch
 from typing import List
-from utils import make_test_samples
+from .utils import make_test_samples
 
 
 @torch.no_grad()
