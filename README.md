@@ -19,3 +19,5 @@ python3 code/train_part2.py
 ```bash
 python3 main.py
 ```
+
+This is a submission for ML Final Assignment
